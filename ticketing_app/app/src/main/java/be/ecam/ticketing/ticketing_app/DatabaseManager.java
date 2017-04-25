@@ -140,7 +140,7 @@ public class DatabaseManager
 
     public boolean DeleteAdmin(String id,Admin admin)
     {
-        if(admin.Right() <= 7)
+        if(admin.getRights() <= 7)
         {
             try
             {

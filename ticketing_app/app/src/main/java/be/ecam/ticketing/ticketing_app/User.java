@@ -52,7 +52,7 @@ public class User {
         this.pswd = pswd;
     }
 
-    public int Right()
+    public int getRights()
     {
         return this.droit;
     }
