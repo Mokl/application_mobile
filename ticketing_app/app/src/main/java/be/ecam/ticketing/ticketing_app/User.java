@@ -10,6 +10,12 @@ public class User {
     private int ID, age, pswd, droit;
     private Compte compte;
 
+    // Constructor for a basic user account (no-admin)
+    public User(String nom, String prenom, String mail,
+                int ID, int age, int pswd, Compte compte){
+        new User(nom, prenom, mail, ID, age, pswd, 0, compte);
+    }
+
     public User(String nom, String prenom, String mail,
                 int ID, int age, int pswd, int droit, Compte compte){
         this.nom = nom;
