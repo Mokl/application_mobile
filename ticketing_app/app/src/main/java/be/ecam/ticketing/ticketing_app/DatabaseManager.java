@@ -1,5 +1,7 @@
 package be.ecam.ticketing.ticketing_app;
 
+import android.provider.BaseColumns;
+
 import java.sql.*;
 
 /**
@@ -117,6 +119,51 @@ public class DatabaseManager
         }
     }
 
+    public boolean DeleteUser(String id)
+    {
+        try
+        {
+            conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
+            Statement stmt = conn.createStatement();
+            String query = "DELETE FROM user WHERE id='"+id+"';";
+            stmt.executeQuery(query);
+
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    public boolean DeleteAdmin(String id,Admin admin)
+    {
+        if(admin.Right() <= 7)
+        {
+            try
+            {
+                conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
+                Statement stmt = conn.createStatement();
+                String query = "DELETE FROM employee WHERE id='"+id+"';";
+                stmt.executeQuery(query);
+
+                stmt.close();
+                conn.close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public boolean Pay(double montant, String[] info)
     {
         try
@@ -191,4 +238,43 @@ public class DatabaseManager
             return false;
         }
     }
+
+    public boolean SetPrice(String name, double prix)
+    {
+        try
+        {
+            conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
+            Statement stmt = conn.createStatement();
+            String query = "UPDATE product SET prix ='"+Double.toString(prix)+"' WHERE name='"+name+"';";
+            stmt.executeQuery(query);
+
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    public boolean DeleteProduct(String name)
+    {
+        try
+        {
+            conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
+            Statement stmt = conn.createStatement();
+            String query = "DELETE FROM product WHERE name='"+name+"';";
+            stmt.executeQuery(query);
+
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
 }

@@ -51,4 +51,9 @@ public class User {
     public void changePassword(int pswd){
         this.pswd = pswd;
     }
+
+    public int Right()
+    {
+        return this.droit;
+    }
 }

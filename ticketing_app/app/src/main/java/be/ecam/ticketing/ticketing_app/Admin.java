@@ -26,11 +26,14 @@ public class Admin extends User {
 
     public void addUser(String nom, String prenom, String mail,
                    int ID, int age, int pswd, Compte compte){
-        new User(nom, prenom, mail, ID, age, pswd, droit, compte);
+        new User(nom, prenom, mail, ID, age, pswd, compte);
     }
 
     public void addAdmin(String nom, String prenom, String mail,
                     int ID, int age, int pswd, Compte compte){
         new Admin(nom, prenom, mail, ID, age, pswd, compte);
     }
+
+
+
 }
