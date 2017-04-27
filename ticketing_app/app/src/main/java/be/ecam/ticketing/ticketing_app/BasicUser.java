@@ -21,10 +21,10 @@ public class BasicUser extends User {
         db.Recharge(add, info);
     }
 
-    public void pay(double withdraw){
+    public void pay(double withdraw, String[] product){
         balance -= withdraw;
         String[] info = {Integer.toString(this.getID()), this.getPassword()};
-        db.Pay(withdraw, info);
+        db.Pay(withdraw, info, product);
     }
 
     public void update(){
