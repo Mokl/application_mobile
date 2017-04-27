@@ -1,5 +1,7 @@
 package be.ecam.ticketing.ticketing_app;
 
+import android.provider.ContactsContract;
+
 /**
  * Created by Juan Barrera on 25-04-17.
  * Time: 09:13.
@@ -16,8 +18,8 @@ public class Compte {
         this.montant = montant;
     }
 
-    public void refill(){
-
+    public void refill(double add){
+        montant += add;
     }
 
     public void pay(){

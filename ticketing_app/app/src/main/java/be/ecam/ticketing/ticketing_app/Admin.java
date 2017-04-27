@@ -8,8 +8,8 @@ package be.ecam.ticketing.ticketing_app;
 public class Admin extends User {
 
     public Admin(String nom, String prenom, String mail,
-                int ID, int age, int pswd, Compte compte){
-        super(nom, prenom, mail, ID, age, pswd, 1, compte);
+                int ID, int age, String password, Compte compte){
+        super(nom, prenom, mail, ID, age, password, 1, compte);
     }
 
     public void setProduct(){
@@ -25,13 +25,13 @@ public class Admin extends User {
     }
 
     public void addUser(String nom, String prenom, String mail,
-                   int ID, int age, int pswd, Compte compte){
-        new User(nom, prenom, mail, ID, age, pswd, compte);
+                   int ID, int age, String password, Compte compte){
+        new User(nom, prenom, mail, ID, age, password, compte);
     }
 
     public void addAdmin(String nom, String prenom, String mail,
-                    int ID, int age, int pswd, Compte compte){
-        new Admin(nom, prenom, mail, ID, age, pswd, compte);
+                    int ID, int age, String password, Compte compte){
+        new Admin(nom, prenom, mail, ID, age, password, compte);
     }
 
 

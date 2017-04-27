@@ -6,24 +6,24 @@ package be.ecam.ticketing.ticketing_app;
  */
 
 public class User {
-    private String nom, prenom, mail;
-    private int ID, age, pswd, droit;
+    private String nom, prenom, mail, password;
+    private int ID, age, droit;
     private Compte compte;
 
     // Constructor for a basic user account (no-admin)
     public User(String nom, String prenom, String mail,
-                int ID, int age, int pswd, Compte compte){
-        new User(nom, prenom, mail, ID, age, pswd, 0, compte);
+                int ID, int age, String password, Compte compte){
+        new User(nom, prenom, mail, ID, age, password, 0, compte);
     }
 
     public User(String nom, String prenom, String mail,
-                int ID, int age, int pswd, int droit, Compte compte){
+                int ID, int age, String password, int droit, Compte compte){
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
         this.ID = ID;
         this.age = age;
-        this.pswd = pswd;
+        this.password = password;
         this.droit = droit;
         this.compte = compte;
     }
@@ -48,8 +48,8 @@ public class User {
         return age;
     }
 
-    public void changePassword(int pswd){
-        this.pswd = pswd;
+    public void changePassword(String pswd){
+        this.password = password;
     }
 
     public int getRights() { return this.droit; }
