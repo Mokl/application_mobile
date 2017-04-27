@@ -165,15 +165,30 @@ public class DatabaseManager
         }
     }
 
-    public boolean Pay(double montant, String[] info)
+    public boolean Pay(double montant, String[] info,String[] product)
     {
         try
         {
             conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
-            Statement stmt = conn.createStatement();
+            PreparedStatement stmt = null;
             String montant_str = Double.toString(montant);
             String query = "UPDATE user SET solde = 'solde-"+montant_str+"' WHERE id='"+info[0]+"' AND password='"+info[1]+"';";
-            stmt.executeQuery(query);
+            String query2 ="UUDATE product SET quantity = quantity - 1 WHERE product ='?' ;";
+
+            conn.setAutoCommit(false);
+
+            int i;
+            conn.prepareStatement(query2);
+            stmt.execute();
+            conn.prepareStatement(query);
+            for(i=0;i< product.length-1;i++)
+            {
+                stmt.setObject(1,product,Types.VARCHAR);
+                stmt.execute();
+            }
+            conn.commit();
+
+            //stmt.executeQuery(query);
 
             stmt.close();
             conn.close();
