@@ -52,8 +52,5 @@ public class User {
         this.pswd = pswd;
     }
 
-    public int getRights()
-    {
-        return this.droit;
-    }
+    public int getRights() { return this.droit; }
 }

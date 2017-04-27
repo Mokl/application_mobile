@@ -20,7 +20,7 @@ public class Admin extends User {
 
     }
 
-    public void controlUsed(int ID){
+    public void controlUser(int ID){
 
     }
 

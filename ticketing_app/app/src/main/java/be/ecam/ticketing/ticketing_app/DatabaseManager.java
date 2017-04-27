@@ -85,7 +85,8 @@ public class DatabaseManager
         {
             conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
             Statement stmt = conn.createStatement();
-            String query = "INSERT INTO user VALUES('"+info[0]+"','"+info[1]+"','"+info[2]+"','"+info[3]+"','"+info[4]+"','"+info[5]+"','"+info[6]+"');";
+            String query = "INSERT INTO user VALUES('"+info[0]+"','"+info[1]+"','"+info[2]+"','"+info[3]+"','" +
+                    info[4]+"','"+info[5]+"','"+info[6]+"');";
             //ResultSet result = stmt.executeQuery(query);
 
             //result.close();
@@ -99,7 +100,7 @@ public class DatabaseManager
         }
     }
 
-    public boolean CreateAdmin(String[] info[])
+    public boolean CreateAdmin(String[] info)
     {
         try
         {
@@ -138,7 +139,7 @@ public class DatabaseManager
         }
     }
 
-    public boolean DeleteAdmin(String id,Admin admin)
+    public boolean DeleteAdmin(String id, Admin admin)
     {
         if(admin.getRights() <= 7)
         {
