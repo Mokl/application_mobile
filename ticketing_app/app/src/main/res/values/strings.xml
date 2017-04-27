@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">ticketing_app</string>
+    <string name="app_name">AppMobile</string>
+    <string name="str_create_account"> Créer un compte</string>
+    <string name="str_connexion"> Connexion</string>
+    <string name="str_username"> Nom utilisateur</string>
+    <string name="str_pwd">Mot de passe</string>
+    <string name="str_tickets">Ticketing application</string>
+    <string name="str_pref">Mes préférences</string>
+    <string name="str_price">Prix des produits</string>
+    <string name="str_price_product">Prix des produits</string>
+    <string name="str_admin_account">Compte administrateur </string>
+    <string name="str_set_product">Déclarer les produits</string>
+    <string name="str_set_price">Déclarer le prix des produits</string>
+    <string name="str_stats">Statistiques</string>
+    <string name="load">Load</string>
+    <string name="option">Option</string>
 </resources>
