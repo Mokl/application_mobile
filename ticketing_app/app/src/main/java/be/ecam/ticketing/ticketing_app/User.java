@@ -7,25 +7,17 @@ package be.ecam.ticketing.ticketing_app;
 
 public class User {
     private String nom, prenom, mail, password;
-    private int ID, age, droit;
-    private Compte compte;
-
-    // Constructor for a basic user account (no-admin)
-    public User(String nom, String prenom, String mail,
-                int ID, int age, String password, Compte compte){
-        new User(nom, prenom, mail, ID, age, password, 0, compte);
-    }
+    private int ID, age, access;
 
     public User(String nom, String prenom, String mail,
-                int ID, int age, String password, int droit, Compte compte){
+                int ID, int age, String password, int access){
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
         this.ID = ID;
         this.age = age;
         this.password = password;
-        this.droit = droit;
-        this.compte = compte;
+        this.access = access;
     }
 
     public String getFirstName(){
@@ -48,9 +40,11 @@ public class User {
         return age;
     }
 
+    protected String getPassword() { return password; }
+
     public void changePassword(String pswd){
         this.password = password;
     }
 
-    public int getRights() { return this.droit; }
+    public int getAccess() { return this.access; }
 }

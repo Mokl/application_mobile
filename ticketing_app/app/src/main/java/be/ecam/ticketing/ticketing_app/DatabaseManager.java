@@ -141,7 +141,7 @@ public class DatabaseManager
 
     public boolean DeleteAdmin(String id, Admin admin)
     {
-        if(admin.getRights() <= 7)
+        if(admin.getAccess() <= 7)
         {
             try
             {
