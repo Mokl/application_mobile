@@ -12,7 +12,7 @@ import java.util.HashMap;
  * Time: 10:49.
  */
 
-public class SessionManager {
+/*public class SessionManager {
     SharedPreferences pref;
     Editor editor;
     Context context;
@@ -70,4 +70,4 @@ public class SessionManager {
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         this.context.startActivity(i);
     }
-}
+}*/
