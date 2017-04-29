@@ -16,9 +16,9 @@ public class DatabaseManager
     public DatabaseManager(String dbInfo[])
     {
         conn_string = new String[3];
-        conn_string[0] = "jdbc:mysql://localhost/"+dbInfo[0];
-        conn_string[1] = dbInfo[2];
-        conn_string[2] = dbInfo[3];
+        conn_string[0] = "jdbc:mysql://192.168.137.222/"+dbInfo[0];//DB name
+        conn_string[1] = dbInfo[2];//username
+        conn_string[2] = dbInfo[3];//password
     }
 
     public boolean ConnectEmployee(String[] info)
@@ -290,6 +290,49 @@ public class DatabaseManager
         catch (Exception e)
         {
             return false;
+        }
+    }
+
+    public String[] getInfo(String id)
+    {
+        String[] data= new String[7];
+        try
+        {
+            conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
+            Statement stmt = conn.createStatement();
+            String query = "SELECT * FROM user WHERE id='"+id+"';";
+            ResultSet result = stmt.executeQuery(query);
+
+            if(result != null)
+            {
+                while(result.next())
+                {
+                    data[0]=result.getString("nom");
+                    data[1]=result.getString("adresse");
+                    data[2]=result.getString("age");
+                    data[3]=result.getString("id");
+                    data[4]=result.getString("password");
+                    data[5]=result.getString("email");
+                    data[6]=result.getString("solde");
+                }
+
+
+
+                result.close();
+                stmt.close();
+                conn.close();
+                return data;
+            }
+            else
+            {
+                stmt.close();
+                conn.close();
+                return null;
+            }
+        }
+        catch (Exception e)
+        {
+            return null;
         }
     }
 

@@ -6,22 +6,18 @@ package be.ecam.ticketing.ticketing_app;
  */
 
 public class User {
-    private String nom, prenom, mail, password;
-    private int ID, age, access;
+    private String nom,mail,password,ID;
+    private int age, access;
 
-    public User(String nom, String prenom, String mail,
-                int ID, int age, String password, int access){
+    public User(String nom,String mail,
+                String ID, int age, String password, int access){
         this.nom = nom;
-        this.prenom = prenom;
+       // this.prenom = prenom;
         this.mail = mail;
         this.ID = ID;
         this.age = age;
         this.password = password;
         this.access = access;
-    }
-
-    public String getFirstName(){
-        return prenom;
     }
 
     public String getForeName(){
@@ -32,7 +28,7 @@ public class User {
         return mail;
     }
 
-    public int getID(){
+    public String getID(){
         return ID;
     }
 
