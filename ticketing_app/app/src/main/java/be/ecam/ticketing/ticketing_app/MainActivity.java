@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnClk = (Button)findViewById(R.id.buttonConnection);
         btnCreate=(Button)findViewById(R.id.create_user);
         btnClk.setOnClickListener(this);
+        btnCreate.setOnClickListener(this);
         Name = (EditText)findViewById(R.id.username);
         Password = (EditText)findViewById(R.id.psswd);
         msg = (TextView)findViewById(R.id.user2);
@@ -113,7 +114,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if(v==btnCreate)
         {
-            ;
+            Intent intent = new Intent(this,AddUserActivity.class);
+            startActivity(intent);
         }
     }
 }
