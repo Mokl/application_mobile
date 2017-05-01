@@ -1,5 +1,7 @@
 package be.ecam.ticketing.ticketing_app;
 
+import android.content.ContentValues;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +15,7 @@ import static android.R.attr.name;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button btnClk;
+    private Button btnCreate;
     private TextView msg;
     private EditText Name, Password;
     private String name;
@@ -22,59 +25,95 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
 
         //Connexion DB
-        String[] infoDB={"ticketing_app","root",""};
 
-        this.db = new DatabaseManager(infoDB);
+
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connexion_activity);
         btnClk = (Button)findViewById(R.id.buttonConnection);
+        btnCreate=(Button)findViewById(R.id.create_user);
         btnClk.setOnClickListener(this);
         Name = (EditText)findViewById(R.id.username);
         Password = (EditText)findViewById(R.id.psswd);
         msg = (TextView)findViewById(R.id.user2);
 
         //Connexion info
-        name = Name.getText().toString();
-        password = Password.getText().toString();
-
-
-
     }
+
     public void onClick (View v)
     {
         String[] infoUser= new String[2];
         infoUser[0]=name;
         infoUser[1]=password;
+        String[] infoDB={"ticketing_app","root","root"};
+        this.db = new DatabaseManager(infoDB);
 
         if (v == btnClk)
         {
-            //Connecxion
-            if(db.ConnectUser(infoUser)== true)
-            {
-                //retrieve info
-                String[] info = new String[7];
-                info = db.getInfo(name);
-                User user = new BasicUser(info[0],info[5],info[3], Integer.parseInt(info[2]),info[4],Double.parseDouble(info[7]));
+            name = Name.getText().toString();
+            password = Password.getText().toString();
 
-                //SQLite
-                if(user.getAccess()> 0)
+            //test offlline
+            User user = new BasicUser("test","test@tes.com","TestID",25,"test",50);
+
+            SQLiteManager db_local= new SQLiteManager(this);
+
+            if(db_local.Insert(user)== true)
+            {
+                //setContentView(R.layout.user_activity);
+                //Toast.makeText(MainActivity.this, user.getForeName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this,UserActivity.class);
+                startActivity(intent);
+            }
+            else
+            {
+                Toast.makeText(MainActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
+            }
+
+
+
+
+           /* if(db != null)
+            {
+                //Connecxion
+                if(db.ConnectUser(infoUser)== true)
                 {
-                    SQLiteManager db_local= new SQLiteManager(this,(Admin)user);
-                    setContentView(R.layout.user_activity);
-                    Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
+                    //retrieve info
+                    String[] info = new String[7];
+                    info = db.getInfo(name);
+                    User user = new BasicUser(info[0],info[5],info[3], Integer.parseInt(info[2]),info[4],Double.parseDouble(info[7]));
+
+                    //SQLite
+                    if(user.getAccess()> 0)
+                    {
+                        SQLiteManager db_local= new SQLiteManager(this,(Admin)user);
+                        setContentView(R.layout.user_activity);
+                        Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
+                    }
+                    if(user.getAccess() == 0)
+                    {
+                        SQLiteManager db_local= new SQLiteManager(this,(BasicUser)user);
+                        setContentView(R.layout.user_activity);
+                        Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
+                    }
+
+                    Toast.makeText(MainActivity.this,"Connection granted",Toast.LENGTH_SHORT).show();
                 }
-                if(user.getAccess() == 0)
+                else
                 {
-                    SQLiteManager db_local= new SQLiteManager(this,(BasicUser)user);
-                    setContentView(R.layout.user_activity);
-                    Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,name,Toast.LENGTH_SHORT).show();
                 }
             }
             else
             {
-                Toast.makeText(MainActivity.this,"Invalid information",Toast.LENGTH_SHORT).show();
-            }
+                Toast.makeText(MainActivity.this,"No DataBase",Toast.LENGTH_LONG).show();
+            }*/
+
+        }
+        else if(v==btnCreate)
+        {
+            ;
         }
     }
 }

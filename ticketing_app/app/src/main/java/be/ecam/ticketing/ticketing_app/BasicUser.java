@@ -30,4 +30,9 @@ public class BasicUser extends User {
     public void update(){
 
     }
+
+    public  double getBalance()
+    {
+        return this.balance;
+    }
 }

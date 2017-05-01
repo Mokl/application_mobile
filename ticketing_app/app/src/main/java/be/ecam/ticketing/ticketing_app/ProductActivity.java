@@ -3,6 +3,7 @@ package be.ecam.ticketing.ticketing_app;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.AsyncTaskLoader;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static be.ecam.ticketing.ticketing_app.R.id.product;
 import static be.ecam.ticketing.ticketing_app.R.id.resultView;
 
 /**
@@ -48,36 +50,64 @@ public class ProductActivity extends AppCompatActivity implements ItemAdapter.It
         itemAdapter = new ItemAdapter(this);
         product_name.setAdapter(itemAdapter);
 
-        Product p1= new Product("chimay","biere",1);
-        product_list.add(p1);
-        Product p2= new Product("kriek","biere",1);
-        product_list.add(p2);
-        Product p3= new Product("vodka","vodka",5);
-        product_list.add(p3);
-        Product p4= new Product("coca","soft",1.5);
-        product_list.add(p4);
-        Product p5= new Product("fanta","soft",1.5);
-        product_list.add(p5);
-        Product p6= new Product("jack daniels","liqueur",3);
-        product_list.add(p6);
-        Product p7= new Product("sprint","soft",1.5);
-        product_list.add(p7);
-        Product p8= new Product("redbull","soft",2);
-        product_list.add(p8);
-        Product p9= new Product("ice tea","soft",1);
-        product_list.add(p9);
-        Product p10= new Product("brune","biere",1);
-        product_list.add(p10);
-        Product p11= new Product("blonde","biere",1);
-        product_list.add(p11);
 
-        itemAdapter.setData(product_list);
+        getProduct();
 
 
     }
 
-    @Override
-    public void onClick(int index) {
+    public class QueryTask extends AsyncTask< Void ,Product, Void>
+    {
 
+
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            //ArrayList<Product> array = params[0];
+            Product p1= new Product("chimay","biere",1);
+            product_list.add(p1);
+            Product p2= new Product("kriek","biere",1);
+            product_list.add(p2);
+            Product p3= new Product("vodka","vodka",5);
+            product_list.add(p3);
+            Product p4= new Product("coca","soft",1.5);
+            product_list.add(p4);
+            Product p5= new Product("fanta","soft",1.5);
+            product_list.add(p5);
+            Product p6= new Product("jack daniels","liqueur",3);
+            product_list.add(p6);
+            Product p7= new Product("sprint","soft",1.5);
+            product_list.add(p7);
+            Product p8= new Product("redbull","soft",2);
+            product_list.add(p8);
+            Product p9= new Product("ice tea","soft",1);
+            product_list.add(p9);
+            Product p10= new Product("brune","biere",1);
+            product_list.add(p10);
+            Product p11= new Product("blonde","biere",1);
+            product_list.add(p11);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void queryResults)
+        {
+            itemAdapter.setData(product_list);
+            Product.setList(product_list);
+        }
+    }
+
+    private void getProduct()
+    {
+        new QueryTask().execute();
+    }
+
+    @Override
+    public void onClick(int index)
+    {
+        Intent intent = new Intent(this,ProductDetails.class);
+        intent.putExtra(Intent.EXTRA_INDEX, index);
+        startActivity(intent);
     }
 }

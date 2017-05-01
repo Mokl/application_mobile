@@ -16,9 +16,9 @@ public class DatabaseManager
     public DatabaseManager(String dbInfo[])
     {
         conn_string = new String[3];
-        conn_string[0] = "jdbc:mysql://192.168.137.222/"+dbInfo[0];//DB name
-        conn_string[1] = dbInfo[2];//username
-        conn_string[2] = dbInfo[3];//password
+        conn_string[0] = "jdbc:mysql://192.168.137.222:3306/"+dbInfo[0];//DB name
+        conn_string[1] = dbInfo[1];//username
+        conn_string[2] = dbInfo[2];//password
     }
 
     public boolean ConnectEmployee(String[] info)
@@ -52,14 +52,25 @@ public class DatabaseManager
 
     public boolean ConnectUser(String[] info)
     {
+        boolean state =false;
         try
         {
-            conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
+            //conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
+            conn = DriverManager.getConnection("jdbc:mysql://192.168.137.222:3306/ticketing_app","root","root");
             Statement stmt = conn.createStatement();
             String query = "SELECT * FROM user WHERE id='"+info[0]+"' AND password='"+info[1]+"';";
             ResultSet result = stmt.executeQuery(query);
 
-            if(result != null)
+            while(result.next())
+            {
+                if(result.getString("id")==info[0] && result.getString("password") == info[1] )
+                {
+                    state = true;
+                    break;
+                }
+            }
+
+            if(state == true)
             {
                 result.close();
                 stmt.close();
