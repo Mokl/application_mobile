@@ -2,8 +2,10 @@ package be.ecam.ticketing.ticketing_app;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +14,8 @@ import android.widget.Toast;
 
 import static android.R.attr.name;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,
+        SharedPreferences.OnSharedPreferenceChangeListener{
 
     private Button btnClk;
     private Button btnCreate;
@@ -39,11 +42,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Password = (EditText)findViewById(R.id.psswd);
         msg = (TextView)findViewById(R.id.user2);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences ( this );
+        //We read SharedPreferences at creation too
+        //doUsefulStuffBasedOnMyBooleanPreference (sharedPreferences.getBoolean (key , false ));
+        sharedPreferences.registerOnSharedPreferenceChangeListener ( this );
+
+
         //Connexion info
     }
 
-    public void onClick (View v)
-    {
+    public void onSharedPreferenceChanged(
+            SharedPreferences sharedPreferences, String key){
+        if(key.equals("background")) {
+
+        }
+
+        if(key.equals("language")) {
+
+        }
+    }
+
+    public void onClick (View v) {
         String[] infoUser= new String[2];
         infoUser[0]=name;
         infoUser[1]=password;

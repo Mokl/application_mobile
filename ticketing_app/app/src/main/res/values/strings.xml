@@ -13,5 +13,11 @@
     <string name="str_set_price">Déclarer le prix des produits</string>
     <string name="str_stats">Statistiques</string>
     <string name="load">Load</string>
-    <string name="option">Option</string>
+
+    <!-- Settings strings -->
+    <string name="background_option">Background</string>
+    <string name="backgroung_option_summ">Use the dark theme for this app</string>
+    <string name="language_option">Change Language</string>
+    <string name="language_default">English</string>
+
 </resources>
