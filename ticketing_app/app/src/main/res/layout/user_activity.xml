@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:orientation="horizontal" android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -50,16 +50,21 @@
             android:layout_weight="1" />
 
         <Space
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <Button
             android:text="@string/str_price"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button4" />
+
+        <Button
+            android:text="Recharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button4"
-            android:layout_weight="1" />
+            android:id="@+id/button2"
+            android:layout_weight="10.63" />
     </LinearLayout>
 
 </LinearLayout>

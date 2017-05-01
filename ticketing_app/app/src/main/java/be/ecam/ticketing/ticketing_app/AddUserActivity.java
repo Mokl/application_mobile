@@ -1,5 +1,6 @@
 package be.ecam.ticketing.ticketing_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,7 +24,7 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
     EditText id;
     EditText password;
     EditText psw_conf;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -50,7 +51,7 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
         boolean state = false;
         if(v == ok)
         {
-            Toast.makeText(this,"Invalid or missing information",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Invalid or missing information",Toast.LENGTH_SHORT).show();
             info = new String[7];
             info[0] = nom.getText().toString()+" "+prenom.getText().toString();
             info[1] = address.getText().toString();
@@ -59,6 +60,9 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
             info[4] = email.getText().toString();
             info[5] = "0";
             info[6] = psw_conf.getText().toString();
+
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
 
             /*for(i=0;i<7;i++)
             {
@@ -79,7 +83,7 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
         }
         else
         {
-            Toast.makeText(this,"error",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"error",Toast.LENGTH_SHORT).show();
         }
     }
 }
