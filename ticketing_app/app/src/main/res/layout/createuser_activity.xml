@@ -12,68 +12,63 @@
     tools:context="be.ecam.a13375.appmobile.Principal"
     android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Création d'un compte!" />
-
     <Space
         android:layout_width="wrap_content"
         android:layout_height="5dp" />
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/space"
-        android:layout_toEndOf="@+id/space"
-        android:layout_marginTop="25dp">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_below="@+id/space"
+    android:layout_toEndOf="@+id/space"
+    android:layout_marginTop="25dp">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="130dp"
-            android:layout_height="match_parent">
-            <TextView
-                android:text="Nom:"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView14" />
-
-            <EditText
-                android:layout_width="100dp"
-                android:layout_height="54dp"
-                android:inputType="textPersonName"
-                android:text="Votre nom"
-                android:ems="10"
-                android:id="@+id/editText11" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="15dp"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="130dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="Nom:"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:id="@+id/textView14" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="130dp"
-            android:layout_height="match_parent">
-            <TextView
-                android:text="Prénom:"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView15" />
-
-            <EditText
-                android:layout_width="118dp"
-                android:layout_height="54dp"
-                android:inputType="textPersonName"
-                android:text="Votre prénom"
-                android:ems="10"
-                android:id="@+id/editText12" />
-
-
-        </LinearLayout>
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="54dp"
+            android:inputType="textPersonName"
+            android:text="Votre nom"
+            android:ems="10"
+            android:id="@+id/editText11" />
     </LinearLayout>
+
+    <Space
+        android:layout_width="15dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="130dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="Prénom:"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView15" />
+
+        <EditText
+            android:layout_width="118dp"
+            android:layout_height="54dp"
+            android:inputType="textPersonName"
+            android:text="Votre prénom"
+            android:ems="10"
+            android:id="@+id/editText12" />
+
+
+    </LinearLayout>
+</LinearLayout>
 
     <Space
         android:layout_width="match_parent"
@@ -151,7 +146,7 @@
                 android:id="@+id/textView20" />
 
             <EditText
-                android:layout_width="100dp"
+                android:layout_width="147dp"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
                 android:ems="10"
@@ -168,7 +163,7 @@
                 android:id="@+id/textView21" />
 
             <EditText
-                android:layout_width="100dp"
+                android:layout_width="164dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
