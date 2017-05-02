@@ -1,8 +1,12 @@
 package be.ecam.ticketing.ticketing_app;
 
+import android.app.Application;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
@@ -11,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import static android.R.attr.name;
 
@@ -42,24 +48,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Password = (EditText)findViewById(R.id.psswd);
         msg = (TextView)findViewById(R.id.user2);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences ( this );
-        //We read SharedPreferences at creation too
-        //doUsefulStuffBasedOnMyBooleanPreference (sharedPreferences.getBoolean (key , false ));
-        sharedPreferences.registerOnSharedPreferenceChangeListener ( this );
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        changeBackground (sharedPreferences.getBoolean ("background" , false));
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
 
         //Connexion info
     }
 
+    protected void onDestroy(){
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+    }
+
     public void onSharedPreferenceChanged(
             SharedPreferences sharedPreferences, String key){
         if(key.equals("background")) {
-
+            changeBackground(sharedPreferences.getBoolean(key, false));
         }
 
         if(key.equals("language")) {
-
+            attachBaseContext(this);
         }
+    }
+
+    private void changeBackground(boolean value){
+        if(value){
+            setTheme(android.R.style.Theme_Black);
+        }
+        else {
+            setTheme(android.R.style.Theme_Light);
+        }
+        //recreate();
+    }
+
+    protected void attachBaseContext(Context newBase){
+        String value = PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en");
+        super.attachBaseContext(MyContextWrapper.wrap(newBase, value));
     }
 
     public void onClick (View v) {

@@ -7,8 +7,8 @@
     </array>
 
     <array name="language_values">
-        <item>English</item>
-        <item>Français</item>
-        <item>Español</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>es</item>
     </array>
 </resources>
