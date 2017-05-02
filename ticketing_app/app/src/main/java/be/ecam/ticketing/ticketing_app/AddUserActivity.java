@@ -54,7 +54,6 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v)
     {
-        boolean state = false;
         if(v == ok)
         {
             Toast.makeText(this,"Invalid or missing information",Toast.LENGTH_SHORT).show();
@@ -67,25 +66,9 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
             info[5] = "0";
             info[6] = psw_conf.getText().toString();
 
+
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
-
-            /*for(i=0;i<7;i++)
-            {
-                if(info[i] == "")
-                {
-                    state =true;
-                    break;
-                }
-            }*/
-            /*if(info[3] == "")
-            {
-                Toast.makeText(this,"User added",Toast.LENGTH_LONG).show();
-            }
-            else
-            {
-                Toast.makeText(this,"Invalid or missing information",Toast.LENGTH_LONG).show();
-            }*/
         }
         else
         {

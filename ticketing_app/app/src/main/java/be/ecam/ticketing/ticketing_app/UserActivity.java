@@ -51,6 +51,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
 
         //db = new DatabaseManager(infoDB);
         SQLiteManager db_local = new SQLiteManager(this);
+        //retrieve of the user information from the SQLite DB
         String[] info = db_local.InfoUser();
         //String[] info = {"test","test2","120","test_row"};
 

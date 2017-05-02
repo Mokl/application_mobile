@@ -34,6 +34,7 @@ public class ProductActivity extends AppCompatActivity implements ItemAdapter.It
     private RecyclerView product_name;
     private ItemAdapter itemAdapter;
     private ArrayList<Product> product_list = new ArrayList<>();
+    private DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,7 +68,7 @@ public class ProductActivity extends AppCompatActivity implements ItemAdapter.It
         @Override
         protected Void doInBackground(Void... params)
         {
-            //ArrayList<Product> array = params[0];
+            //offline test
             Product p1= new Product("chimay","biere",1);
             product_list.add(p1);
             Product p2= new Product("kriek","biere",1);
@@ -80,7 +81,7 @@ public class ProductActivity extends AppCompatActivity implements ItemAdapter.It
             product_list.add(p5);
             Product p6= new Product("jack daniels","liqueur",3);
             product_list.add(p6);
-            Product p7= new Product("sprint","soft",1.5);
+            Product p7= new Product("sprite","soft",1.5);
             product_list.add(p7);
             Product p8= new Product("redbull","soft",2);
             product_list.add(p8);
@@ -90,6 +91,12 @@ public class ProductActivity extends AppCompatActivity implements ItemAdapter.It
             product_list.add(p10);
             Product p11= new Product("blonde","biere",1);
             product_list.add(p11);
+
+            //online
+           /*String[] info = {"ticketing_app","root","root"}
+            db = new DatabaseManager(info);
+            product_list = db.getProduct();*/
+
 
             return null;
         }

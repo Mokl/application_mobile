@@ -19,6 +19,8 @@ public class RefillActivity extends AppCompatActivity implements View.OnClickLis
     private Button confirm;
     private EditText value;
     private SQLiteManager db_local;
+    private String user_id;
+    private DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +36,10 @@ public class RefillActivity extends AppCompatActivity implements View.OnClickLis
         confirm.setOnClickListener(this);
         db_local = new SQLiteManager(this);
 
+        //Connection db
+        /*String[] info = {"ticketing_app","root","root"};
+        db = new DatabaseManager(info);*/
+
 
     }
     @Override
@@ -42,11 +48,19 @@ public class RefillActivity extends AppCompatActivity implements View.OnClickLis
         if(v == confirm)
         {
 
-            String[] info = db_local.InfoUser();
+            String info = db_local.InfoUser()[0];
 
             if(!value.getText().toString().equals(""))
             {
                 double montant = Double.parseDouble(value.getText().toString());
+                //test online
+                /*if(db.Recharge(montant,info))
+                {
+                    Toast.makeText(this,"Done",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this,UserActivity.class);
+                    startActivity(intent);
+                }*/
+                //test offline
                 Toast.makeText(this,"Done",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this,UserActivity.class);
                 startActivity(intent);

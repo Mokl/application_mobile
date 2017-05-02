@@ -32,8 +32,11 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Connexion DB
+
         super.onCreate(savedInstanceState);
+        //Connexion DB
+       /* String[] db_conifon ={"ticketing_app","root","root"};
+        this.db = new DatabaseManager(db_conifon);*/
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
@@ -47,6 +50,8 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
         Password = (EditText)findViewById(R.id.psswd);
         msg = (TextView)findViewById(R.id.user2);
         //Connexion info
+        /*name = Name.getText().toString();
+        password= Password.getText().toString();*/
     }
 
     protected void onRestart(){
@@ -71,6 +76,28 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
             //test offlline
             User user = new BasicUser("test","test@tes.com","TestID",25,"test",50);
 
+            //online code
+           /* String[] info={name,password};
+            if(db.ConnectUser(info))
+            {
+                String[] info_user=db.getInfo(name);
+                user = new BasicUser(info_user[0],info_user[5],info_user[3], Integer.parseInt(info_user[2]),info_user[4],Double.parseDouble(info_user[7]));
+
+                SQLiteManager db_local= new SQLiteManager(this);
+
+                if(db_local.Insert(user)== true)
+                {
+                    //setContentView(R.layout.user_activity);
+                    //Toast.makeText(MainActivity.this, user.getForeName(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this,UserActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
+                }
+            }*/
+
             SQLiteManager db_local= new SQLiteManager(this);
 
             if(db_local.Insert(user)== true)
@@ -84,43 +111,6 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
             {
                 Toast.makeText(MainActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
             }
-
-           /* if(db != null)
-            {
-                //Connecxion
-                if(db.ConnectUser(infoUser)== true)
-                {
-                    //retrieve info
-                    String[] info = new String[7];
-                    info = db.getInfo(name);
-                    User user = new BasicUser(info[0],info[5],info[3], Integer.parseInt(info[2]),info[4],Double.parseDouble(info[7]));
-
-                    //SQLite
-                    if(user.getAccess()> 0)
-                    {
-                        SQLiteManager db_local= new SQLiteManager(this,(Admin)user);
-                        setContentView(R.layout.user_activity);
-                        Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
-                    }
-                    if(user.getAccess() == 0)
-                    {
-                        SQLiteManager db_local= new SQLiteManager(this,(BasicUser)user);
-                        setContentView(R.layout.user_activity);
-                        Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
-                    }
-
-                    Toast.makeText(MainActivity.this,"Connection granted",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(MainActivity.this,name,Toast.LENGTH_SHORT).show();
-                }
-            }
-            else
-            {
-                Toast.makeText(MainActivity.this,"No DataBase",Toast.LENGTH_LONG).show();
-            }*/
-
         }
         else if(v==btnCreate)
         {

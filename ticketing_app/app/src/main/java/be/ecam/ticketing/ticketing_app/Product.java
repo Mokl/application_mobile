@@ -33,6 +33,7 @@ public class Product {
         return prix;
     }
 
+    /*list of poduct*/
     public static void setList(ArrayList<Product> data)
     {
         product_list = new ArrayList<>();
