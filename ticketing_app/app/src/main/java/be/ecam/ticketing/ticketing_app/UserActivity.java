@@ -21,7 +21,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private DatabaseManager db;
     private  SQLiteManager db_local;
     private String userID;
-    private Button preference;
     private Button produit;
     private Button refill;
 
@@ -37,10 +36,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         TextView nom = (TextView)findViewById(R.id.user1);
         TextView id = (TextView)findViewById(R.id.user2);
         TextView solde = (TextView)findViewById(R.id.textView4);
-        preference =(Button)findViewById(R.id.button);
         produit = (Button)findViewById(R.id.button4);
         refill = (Button)findViewById(R.id.button2);
-        preference.setOnClickListener(this);
         produit.setOnClickListener(this);
         refill.setOnClickListener(this);
 
@@ -67,12 +64,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v)
     {
-        if(v == preference)
-        {
-            Intent intent = new Intent(this,SettingsActivity.class);
-            startActivity(intent);
-        }
-        else if(v == produit)
+        if(v == produit)
         {
             Intent intent = new Intent(this,ProductActivity.class);
             startActivity(intent);

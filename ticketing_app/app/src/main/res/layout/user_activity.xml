@@ -40,35 +40,29 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="80dp" />
+        android:layout_height="5dp" />
 
     <LinearLayout
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
 
         <Button
-            android:text="@string/str_pref"
+            android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button"
-            android:layout_weight="1" />
+            android:text="@string/str_price" />
 
         <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:text="@string/str_price"
-            android:layout_width="116dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/button4" />
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
 
         <Button
             android:text="@string/str_recharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button2"
-            android:layout_weight="10.63" />
+            android:id="@+id/button2" />
     </LinearLayout>
 
 </LinearLayout>
