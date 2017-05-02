@@ -3,26 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:weightSum="1"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.31" />
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <TextView
             android:text="@string/str_tickets"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView3"
-            android:layout_weight="0.11" />
+            android:layout_weight="0.11"
+            android:textSize="25sp"
+            android:gravity="center"/>
     </LinearLayout>
 
     <Space
@@ -35,7 +34,8 @@
         android:layout_height="wrap_content"
         android:ems="8"
         android:hint="@string/str_username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:gravity="center"/>
 
     <Space
         android:layout_width="match_parent"
@@ -47,7 +47,8 @@
         android:inputType="textPassword"
         android:hint="@string/str_pwd"
         android:ems="10"
-        android:id="@+id/psswd" />
+        android:id="@+id/psswd"
+        android:gravity="center"/>
 
     <Space
         android:layout_width="match_parent"
@@ -57,7 +58,8 @@
         android:id="@+id/buttonConnection"
         android:layout_width="154dp"
         android:layout_height="wrap_content"
-        android:text="@string/str_connexion" />
+        android:text="@string/str_connexion"
+        android:gravity="center"/>
 
     <Space
         android:layout_width="match_parent"
@@ -68,6 +70,7 @@
         android:layout_width="152dp"
         android:layout_height="wrap_content"
         android:id="@+id/create_user"
-        android:text="@string/str_create_account" />
+        android:text="@string/str_create_account"
+        android:gravity="center"/>
 
 </LinearLayout>

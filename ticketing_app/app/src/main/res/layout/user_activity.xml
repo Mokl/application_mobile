@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="30dp" />
 
     <TextView
-        android:text="Nom"
+        android:hint="@string/str_last_name"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/user1" />
+        android:id="@+id/user1"
+        android:gravity="center"/>
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="30dp" />
 
     <TextView
-        android:text="@string/str_username"
+        android:hint="@string/str_username"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/user2" />
+        android:id="@+id/user2"
+        android:gravity="center"/>
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="30dp" />
 
     <TextView
-        android:text="50 euros"
+        android:hint="@string/str_balance"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/textView4" />
+        android:id="@+id/textView4"
+        android:gravity="center"/>
 
 
     <Space
@@ -60,7 +64,7 @@
             android:id="@+id/button4" />
 
         <Button
-            android:text="Recharge"
+            android:text="@string/str_recharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button2"

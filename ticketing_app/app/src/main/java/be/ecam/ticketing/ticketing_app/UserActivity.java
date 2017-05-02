@@ -93,9 +93,9 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     public void onSharedPreferenceChanged(
             SharedPreferences sharedPreferences, String key){
         if(key.equals("background")) {
-            finish();
             Intent intent = new Intent(this, SettingsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            finish();
             startActivity(intent);
         }
 

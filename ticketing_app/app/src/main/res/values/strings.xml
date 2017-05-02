@@ -1,9 +1,28 @@
 <resources>
     <string name="app_name">AppMobile</string>
-    <string name="str_create_account"> Créer un compte</string>
-    <string name="str_connexion"> Connexion</string>
-    <string name="str_username"> Nom utilisateur</string>
+    <string name="str_create_account">Créer un compte</string>
+    <string name="str_connexion">Connexion</string>
+
+    <string name="str_first_name">Prénom</string>
+    <string name="str_last_name">Nom</string>
+    <string name="str_your_fn">Votre prénom</string>
+    <string name="str_your_ln">Votre nom</string>
+
+    <string name="str_username">Nom d\'utilisateur</string>
+
     <string name="str_pwd">Mot de passe</string>
+    <string name="str_confirmpwd">Confirmer mot de passe</string>
+
+    <string name="str_email">Email</string>
+
+    <string name="str_age">Age</string>
+    <string name="str_your_age">Votre âge</string>
+
+    <string name="str_address">Adresse</string>
+    <string name="str_your_address">Votre adresse</string>
+
+    <string name="str_balance">Solde</string>
+
     <string name="str_tickets">Ticketing application</string>
     <string name="str_pref">Mes préférences</string>
     <string name="str_price">Prix des produits</string>
@@ -14,6 +33,14 @@
     <string name="str_stats">Statistiques</string>
     <string name="load">Load</string>
     <string name="option">Option</string>
+
+    <string name="str_recharge">Recharger crédit</string>
+
+    <string name="str_list_products">Liste de Produits</string>
+
+    <string name="select_prices">Sélection des prix</string>
+    <string name="select_products">Sélection des produits</string>
+    <string name="prices_and_products">Prix/Produits</string>
 
     <!-- Settings strings -->
     <string name="background_option">Background</string>
