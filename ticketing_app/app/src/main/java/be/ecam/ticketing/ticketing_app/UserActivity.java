@@ -57,6 +57,13 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         solde.setText(info[2]);
     }
 
+    protected void onRestart(){
+        super.onRestart();
+        finish();
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onClick(View v)
     {
@@ -91,6 +98,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.action_settings:
                 intent = new Intent(this,SettingsActivity.class);
                 startActivity(intent);
+                recreate();
                 return true;
 
             case R.id.action_logout:

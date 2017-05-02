@@ -6,21 +6,18 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
-
-import static android.R.attr.name;
-
-public  class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public  class ConnectActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnClk;
     private Button btnCreate;
@@ -32,12 +29,13 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        //Connexion DB
         super.onCreate(savedInstanceState);
         //Connexion DB
        /* String[] db_conifon ={"ticketing_app","root","root"};
         this.db = new DatabaseManager(db_conifon);*/
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
 
@@ -57,7 +55,7 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
     protected void onRestart(){
         super.onRestart();
         finish();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ConnectActivity.class);
         startActivity(intent);
     }
 
@@ -88,13 +86,13 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
                 if(db_local.Insert(user)== true)
                 {
                     //setContentView(R.layout.user_activity);
-                    //Toast.makeText(MainActivity.this, user.getForeName(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ConnectActivity.this, user.getForeName(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this,UserActivity.class);
                     startActivity(intent);
                 }
                 else
                 {
-                    Toast.makeText(MainActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
+                    Toast.makeText(ConnectActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
                 }
             }*/
 
@@ -109,13 +107,37 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
             }
             else
             {
-                Toast.makeText(MainActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
+                Toast.makeText(ConnectActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
             }
         }
         else if(v==btnCreate)
         {
             Intent intent = new Intent(this,AddUserActivity.class);
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                intent = new Intent(this,SettingsActivity.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
     }
 }
