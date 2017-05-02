@@ -9,8 +9,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
  * Created by Paluche on 27-04-17.
  */
 
-public class SettingsFragment extends PreferenceFragmentCompat
-{
+public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle bundle,String s)
     {

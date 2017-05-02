@@ -20,8 +20,8 @@ import java.util.Locale;
 
 import static android.R.attr.name;
 
-public  class MainActivity extends AppCompatActivity //implements View.OnClickListener,
-        //SharedPreferences.OnSharedPreferenceChangeListener
+public  class MainActivity extends AppCompatActivity implements View.OnClickListener,
+        SharedPreferences.OnSharedPreferenceChangeListener
         {
 
     private Button btnClk;
@@ -31,17 +31,13 @@ public  class MainActivity extends AppCompatActivity //implements View.OnClickLi
     private String name;
     private String password;
     private DatabaseManager db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         //Connexion DB
-
-
-
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.createuser_activity);
-        /*btnClk = (Button)findViewById(R.id.buttonConnection);
+        setContentView(R.layout.connexion_activity);
+        btnClk = (Button)findViewById(R.id.buttonConnection);
         btnCreate=(Button)findViewById(R.id.create_user);
         btnClk.setOnClickListener(this);
         btnCreate.setOnClickListener(this);
@@ -50,9 +46,8 @@ public  class MainActivity extends AppCompatActivity //implements View.OnClickLi
         msg = (TextView)findViewById(R.id.user2);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        changeBackground (sharedPreferences.getBoolean ("background" , false));
+        changeBackground(sharedPreferences.getBoolean("background", false));
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-
 
         //Connexion info
     }
@@ -68,9 +63,9 @@ public  class MainActivity extends AppCompatActivity //implements View.OnClickLi
             changeBackground(sharedPreferences.getBoolean(key, false));
         }
 
-        if(key.equals("language")) {
+        /*if(key.equals("language")) {
             attachBaseContext(this);
-        }
+        }*/
     }
 
     private void changeBackground(boolean value){
@@ -84,8 +79,8 @@ public  class MainActivity extends AppCompatActivity //implements View.OnClickLi
     }
 
     protected void attachBaseContext(Context newBase){
-        String value = PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en");
-        super.attachBaseContext(MyContextWrapper.wrap(newBase, value));
+        //String value = PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en");
+        super.attachBaseContext(MyContextWrapper.wrap(newBase, "en"));
     }
 
     public void onClick (View v) {
@@ -116,9 +111,6 @@ public  class MainActivity extends AppCompatActivity //implements View.OnClickLi
             {
                 Toast.makeText(MainActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
             }
-
-
-
 
            /* if(db != null)
             {
@@ -156,11 +148,11 @@ public  class MainActivity extends AppCompatActivity //implements View.OnClickLi
                 Toast.makeText(MainActivity.this,"No DataBase",Toast.LENGTH_LONG).show();
             }*/
 
-        /*}
+        }
         else if(v==btnCreate)
         {
             Intent intent = new Intent(this,AddUserActivity.class);
             startActivity(intent);
-        }*/
+        }
     }
 }
