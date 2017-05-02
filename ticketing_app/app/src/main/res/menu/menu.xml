@@ -2,14 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action"
+        android:id="@+id/action_settings"
         android:orderInCategory="1"
-        android:title="@string/load"
-        app:showAsAction="ifRoom"/>
-
-    <item
-        android:id="@+id/preference"
-        android:orderInCategory="2"
-        app:showAsAction="ifRoom"
-        />
+        android:title="@string/settings"
+        app:showAsAction="never"/>
 </menu>

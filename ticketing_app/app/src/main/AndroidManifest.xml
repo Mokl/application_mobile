@@ -4,25 +4,49 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <!-- The main/home activity (it has no parent activity) -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppThemeLight">
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".ConnectActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddUserActivity"
+            android:parentActivityName=".UserActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ConnectActivity"/>
+        </activity>
+
+        <!-- The main user activity (it has no parent activity) -->
         <activity android:name=".UserActivity"
             android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
         </activity>
+
         <activity android:name=".ProductActivity"></activity>
-        <activity android:name=".ProductDetails"></activity>
-        <activity android:name=".AddUserActivity"></activity>
-        <activity android:name=".RefillActivity"></activity>
+        <activity android:name=".ProductDetails">
+            android:parentActivityName=".UserActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UserActivity"/>
+        </activity>
+        <activity android:name=".RefillActivity"
+            android:parentActivityName=".UserActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UserActivity"/>
+        </activity>
         <activity
             android:name=".SettingsActivity"
             android:parentActivityName=".UserActivity">

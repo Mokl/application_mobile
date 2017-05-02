@@ -67,7 +67,7 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
             info[5] = "0";
             info[6] = psw_conf.getText().toString();
 
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this,ConnectActivity.class);
             startActivity(intent);
 
             /*for(i=0;i<7;i++)

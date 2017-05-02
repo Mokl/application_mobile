@@ -31,8 +31,10 @@
     <string name="str_set_product">Déclarer les produits</string>
     <string name="str_set_price">Déclarer le prix des produits</string>
     <string name="str_stats">Statistiques</string>
+
     <string name="load">Load</string>
-    <string name="option">Option</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Log Out</string>
 
     <string name="str_recharge">Recharger crédit</string>
 
@@ -46,6 +48,6 @@
     <string name="background_option">Background</string>
     <string name="backgroung_option_summ">Use the dark theme for this app</string>
     <string name="language_option">Change Language</string>
-    <string name="language_default">English</string>
+    <string name="language_default">en</string>
 
 </resources>

@@ -7,10 +7,12 @@
         android:summary="@string/backgroung_option_summ"
         android:key="background"
         android:title="@string/background_option"/>
+
     <ListPreference
         android:defaultValue="@string/language_default"
         android:entries="@array/language_entries"
         android:entryValues="@array/language_values"
         android:key="language"
         android:title="@string/language_option"/>
+
 </PreferenceScreen>

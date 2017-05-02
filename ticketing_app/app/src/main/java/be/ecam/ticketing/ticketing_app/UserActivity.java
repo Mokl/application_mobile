@@ -3,25 +3,21 @@ package be.ecam.ticketing.ticketing_app;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import static be.ecam.ticketing.ticketing_app.R.id.button;
 
 /**
  * Created by hp on 29/04/2017.
  */
 
-public class UserActivity extends AppCompatActivity implements View.OnClickListener,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+public class UserActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseManager db;
     private  SQLiteManager db_local;
     private String userID;
@@ -35,7 +31,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         setContentView(R.layout.user_activity);
         String[] infoDB={"ticketing_app","root",""};
@@ -61,11 +56,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         solde.setText(info[2]);
     }
 
-    protected void onDestroy(){
-        super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
-    }
-
     @Override
     public void onClick(View v)
     {
@@ -86,26 +76,32 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void changeBackground(boolean value){
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_user, menu);
+        return true;
     }
 
-    public void onSharedPreferenceChanged(
-            SharedPreferences sharedPreferences, String key){
-        if(key.equals("background")) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            finish();
-            startActivity(intent);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                intent = new Intent(this,SettingsActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_logout:
+                intent = new Intent(this,ConnectActivity.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
-
-        /*if(key.equals("language")) {
-            attachBaseContext(this);
-        }*/
-    }
-
-    protected void attachBaseContext(Context newBase){
-        //String value = PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en");
-        super.attachBaseContext(MyContextWrapper.wrap(newBase, "en"));
     }
 }
