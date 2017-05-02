@@ -39,6 +39,10 @@ public class ProductActivity extends AppCompatActivity implements ItemAdapter.It
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
+
         setContentView(R.layout.userprice_activity);
 
         product_name = (RecyclerView) findViewById(R.id.resultView);

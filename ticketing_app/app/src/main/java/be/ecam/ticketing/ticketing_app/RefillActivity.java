@@ -1,8 +1,10 @@
 package be.ecam.ticketing.ticketing_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,10 @@ public class RefillActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
+
         setContentView(R.layout.refill_activity);
         confirm= (Button) findViewById(R.id.confirm_refill);
         value =(EditText)findViewById(R.id.montant_refill);

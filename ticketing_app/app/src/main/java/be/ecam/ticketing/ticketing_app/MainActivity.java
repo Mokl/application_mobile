@@ -20,9 +20,7 @@ import java.util.Locale;
 
 import static android.R.attr.name;
 
-public  class MainActivity extends AppCompatActivity implements View.OnClickListener,
-        SharedPreferences.OnSharedPreferenceChangeListener
-        {
+public  class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnClk;
     private Button btnCreate;
@@ -36,6 +34,10 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         //Connexion DB
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
+
         setContentView(R.layout.connexion_activity);
         btnClk = (Button)findViewById(R.id.buttonConnection);
         btnCreate=(Button)findViewById(R.id.create_user);
@@ -44,43 +46,14 @@ public  class MainActivity extends AppCompatActivity implements View.OnClickList
         Name = (EditText)findViewById(R.id.username);
         Password = (EditText)findViewById(R.id.psswd);
         msg = (TextView)findViewById(R.id.user2);
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        changeBackground(sharedPreferences.getBoolean("background", false));
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-
         //Connexion info
     }
 
-    protected void onDestroy(){
-        super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-    public void onSharedPreferenceChanged(
-            SharedPreferences sharedPreferences, String key){
-        if(key.equals("background")) {
-            changeBackground(sharedPreferences.getBoolean(key, false));
-        }
-
-        /*if(key.equals("language")) {
-            attachBaseContext(this);
-        }*/
-    }
-
-    private void changeBackground(boolean value){
-        if(value){
-            setTheme(android.R.style.Theme_Black);
-        }
-        else {
-            setTheme(android.R.style.Theme_Light);
-        }
-        //recreate();
-    }
-
-    protected void attachBaseContext(Context newBase){
-        //String value = PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en");
-        super.attachBaseContext(MyContextWrapper.wrap(newBase, "en"));
+    protected void onRestart(){
+        super.onRestart();
+        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void onClick (View v) {
