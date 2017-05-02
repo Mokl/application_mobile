@@ -38,9 +38,5 @@ public class User {
 
     protected String getPassword() { return password; }
 
-    public void changePassword(String pswd){
-        this.password = password;
-    }
-
     public int getAccess() { return this.access; }
 }

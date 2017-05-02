@@ -15,20 +15,15 @@ public class BasicUser extends User {
         this.balance = balance;
     }
 
+    /*this method allows the user's account refill*/
     public void refill(double add){
         balance += add;
-        String[] info = {this.getID(), this.getPassword()};
-        db.Recharge(add, info);
+        db.Recharge(add, getID());
     }
-
-    public void pay(double withdraw, String[] product){
+    /*This method allows the user to pay*/
+    public void pay(double withdraw, String product){
         balance -= withdraw;
-        String[] info = {this.getID(), this.getPassword()};
-        db.Pay(withdraw, info, product);
-    }
-
-    public void update(){
-
+        db.Pay(withdraw, getID(), product);
     }
 
     public  double getBalance()

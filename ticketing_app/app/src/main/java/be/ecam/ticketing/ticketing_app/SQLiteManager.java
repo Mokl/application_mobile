@@ -48,56 +48,33 @@ public class SQLiteManager extends SQLiteOpenHelper
         onCreate(db);
     }
 
-
+    /*This method insert the user's informations from the SQLite database*/
     public boolean Insert(User user_in)
     {
 
-        if(user_in.getAccess() == 0)
-        {
 
-            SQLiteDatabase db_local= this.getWritableDatabase();
-            double balance = ((BasicUser) user_in).getBalance();
-            //this.idUser = user_in.getID();
-            String query ="INSERT INTO app_info(name,id,name2) VALUES('"+user_in.getForeName()+"','"+user_in.getID()+"'," +
+
+        SQLiteDatabase db_local= this.getWritableDatabase();
+        double balance = ((BasicUser) user_in).getBalance();
+        //this.idUser = user_in.getID();
+        String query ="INSERT INTO app_info(name,id,name2) VALUES('"+user_in.getForeName()+"','"+user_in.getID()+"'," +
                     ""+String.valueOf(balance)+");";
-            //String query ="INSERT INTO app_info(name,id,name2) VALUES('test','test_id',110.56)";
-            try
-            {
-                db_local.execSQL(query);
-                return true;
-            }
-            catch(Exception e)
-            {
-                return false;
-            }
-        }
-       else
+        //String query ="INSERT INTO app_info(name,id,name2) VALUES('test','test_id',110.56)";
+        try
         {
-
-            SQLiteDatabase db_local= this.getWritableDatabase();
-            /*ContentValues cv = new ContentValues();
-            cv.put(AppEntry.USER_NAME,user.getForeName());
-            cv.put(AppEntry.USER_ID,user.getID());
-            cv.put(AppEntry.USER_SOLD,0);*/
-            //this.idUser = user_in.getID();
-            String query ="insert into app_info values('"+user_in.getForeName()+"','"+user_in.getID()+"','0.00')";
-            try
-            {
-                db_local.execSQL(query);
+            db_local.execSQL(query);
                 return true;
-            }
-            catch(Exception e)
-            {
-                return false;
-            }
         }
-       /* else
+        catch(Exception e)
         {
             return false;
-        }*/
+        }
+
+
 
     }
 
+    /*This method retrieve the user's informations from the SQLite database*/
     public String[] InfoUser()
     {
         String[] info= new String[6];
@@ -131,11 +108,11 @@ public class SQLiteManager extends SQLiteOpenHelper
         return info;
     }
 
-    public static final class AppEntry implements BaseColumns
+    /*public static final class AppEntry implements BaseColumns
     {
         public static final String TABLE_NAME = "app_info";
         public static final String USER_NAME= "name";
         public static final String USER_ID = "id";
         public  static final String USER_SOLD= "solde";
-    }
+    }*/
 }
