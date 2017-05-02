@@ -4,25 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.app.NavUtils;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-
-import static be.ecam.ticketing.ticketing_app.R.id.product;
-import static be.ecam.ticketing.ticketing_app.R.id.resultView;
 
 /**
  * Created by hp on 01/05/2017.
@@ -42,7 +30,7 @@ public class ProductActivity extends AppCompatActivity implements ItemAdapter.It
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
+        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDark : R.style.AppThemeLight);
 
         setContentView(R.layout.userprice_activity);
 
@@ -121,4 +109,9 @@ public class ProductActivity extends AppCompatActivity implements ItemAdapter.It
         intent.putExtra(Intent.EXTRA_INDEX, index);
         startActivity(intent);
     }
+
+    /*protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(LocaleHelper.wrap(newBase,
+                PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en")));
+    }*/
 }

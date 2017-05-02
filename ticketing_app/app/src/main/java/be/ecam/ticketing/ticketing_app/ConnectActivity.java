@@ -1,9 +1,6 @@
 package be.ecam.ticketing.ticketing_app;
 
-import android.app.Application;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -27,17 +24,21 @@ public  class ConnectActivity extends AppCompatActivity implements View.OnClickL
     private String password;
     private DatabaseManager db;
 
+    private SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Connexion DB
         super.onCreate(savedInstanceState);
         //Connexion DB
-       /* String[] db_conifon ={"ticketing_app","root","root"};
-        this.db = new DatabaseManager(db_conifon);*/
 
+        String[] db_online ={"ticketing_app","root","root"};
+        this.db = new DatabaseManager(db_online);
+
+        // Session Manager
+        session = new SessionManager(getApplicationContext());
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
+        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDark : R.style.AppThemeLight);
 
         setContentView(R.layout.connexion_activity);
         btnClk = (Button)findViewById(R.id.buttonConnection);
@@ -74,12 +75,15 @@ public  class ConnectActivity extends AppCompatActivity implements View.OnClickL
             //test offlline
             User user = new BasicUser("test","test@tes.com","TestID",25,"test",50);
 
-            //online code
-           /* String[] info={name,password};
+            //session.createLoginSession("Android Hive", "anroidhive@gmail.com");
+
+            /*//Online DB
+            String[] info={name,password};
             if(db.ConnectUser(info))
             {
                 String[] info_user=db.getInfo(name);
-                user = new BasicUser(info_user[0],info_user[5],info_user[3], Integer.parseInt(info_user[2]),info_user[4],Double.parseDouble(info_user[7]));
+                User user = new BasicUser(info_user[0],info_user[5],info_user[3],
+                        Integer.parseInt(info_user[2]),info_user[4],Double.parseDouble(info_user[7]));*/
 
                 SQLiteManager db_local= new SQLiteManager(this);
 
@@ -94,22 +98,9 @@ public  class ConnectActivity extends AppCompatActivity implements View.OnClickL
                 {
                     Toast.makeText(ConnectActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
                 }
-            }*/
+        }/*
 
-            SQLiteManager db_local= new SQLiteManager(this);
-
-            if(db_local.Insert(user)== true)
-            {
-                //setContentView(R.layout.user_activity);
-                //Toast.makeText(MainActivity.this, user.getForeName(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this,UserActivity.class);
-                startActivity(intent);
-            }
-            else
-            {
-                Toast.makeText(ConnectActivity.this,"Error SQLITE",Toast.LENGTH_SHORT);
-            }
-        }
+            SQLiteManager db_local= new SQLiteManager(this); */
         else if(v==btnCreate)
         {
             Intent intent = new Intent(this,AddUserActivity.class);
@@ -140,4 +131,8 @@ public  class ConnectActivity extends AppCompatActivity implements View.OnClickL
 
         }
     }
+
+    /*protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(LocaleHelper.wrap(newBase,"es"));
+    }*/
 }

@@ -1,5 +1,6 @@
 package be.ecam.ticketing.ticketing_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,14 +19,14 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
 {
     private Button ok;
     private String[] info;
-    EditText nom ;
-    EditText prenom;
-    EditText age;
-    EditText address;
-    EditText email;
-    EditText id;
-    EditText password;
-    EditText psw_conf;
+    private EditText nom ;
+    private EditText prenom;
+    private EditText age;
+    private EditText address;
+    private EditText email;
+    private EditText id;
+    private EditText password;
+    private EditText psw_conf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,7 +34,7 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
+        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDark : R.style.AppThemeLight);
 
         setContentView(R.layout.createuser_activity);
 
@@ -92,4 +93,9 @@ public class AddUserActivity  extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this,"error",Toast.LENGTH_SHORT).show();
         }
     }
+
+    /*protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(LocaleHelper.wrap(newBase,
+                PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en")));
+    }*/
 }

@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">AppMobile</string>
+    <string name="str_create_account">Crear cuenta</string>
+    <string name="str_connexion">Iniciar sesión</string>
+
+    <string name="str_first_name">Nombre</string>
+    <string name="str_last_name">Apellido</string>
+    <string name="str_your_fn">Introduzca su nombre</string>
+    <string name="str_your_ln">Introduzca su apellido</string>
+
+    <string name="str_username">Nombre de usuario</string>
+
+    <string name="str_pwd">Contraseña</string>
+    <string name="str_confirmpwd">Confirmar contraseña</string>
+
+    <string name="str_email">Email</string>
+
+    <string name="str_age">Edad</string>
+    <string name="str_your_age">Introduzca su edad</string>
+
+    <string name="str_address">Dirección</string>
+    <string name="str_your_address">Introduzca su dirección</string>
+
+    <string name="str_balance">Saldo</string>
+
+    <string name="str_tickets">Ticketing application</string>
+    <string name="str_price_product">Precios</string>
+    <string name="str_admin_account">Cuenta de administrador </string>
+    <string name="str_set_product">Añadir productos</string>
+    <string name="str_set_price">Añadir el precio de los productos</string>
+    <string name="str_stats">Estadísticas</string>
+
+    <string name="load">Cargar</string>
+    <string name="settings">Ajustes</string>
+    <string name="logout">Cerrar sesión</string>
+
+    <string name="str_recharge">Añadir saldo</string>
+
+    <string name="str_list_products">Lista de productos</string>
+
+    <string name="select_prices">Seleccionar precios</string>
+    <string name="select_products">Seleccionar productos</string>
+    <string name="prices_and_products">Precios/Productos</string>
+
+    <!-- Settings strings -->
+    <string name="background_option">Cambiar tema</string>
+    <string name="backgroung_option_summ">Usar la version oscura</string>
+    <string name="language_option">Cambiar idioma</string>
+</resources>

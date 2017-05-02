@@ -27,48 +27,40 @@ public class DatabaseManager
     public boolean ConnectUser(String[] info)
     {
         boolean state =false;
-        try
-        {
+        try {
             //conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
             conn = DriverManager.getConnection("jdbc:mysql://192.168.137.222:3306/ticketing_app","root","root");
             Statement stmt = conn.createStatement();
             String query = "SELECT * FROM user WHERE id='"+info[0]+"' AND password='"+info[1]+"';";
             ResultSet result = stmt.executeQuery(query);
 
-            while(result.next())
-            {
-                if(result.getString("id")==info[0] && result.getString("password") == info[1] )
-                {
+            while(result.next()) {
+                if(result.getString("id").equals(info[0]) &&
+                        result.getString("password").equals(info[1])) {
                     state = true;
                     break;
                 }
             }
 
-            if(state == true)
-            {
+            if(state) {
                 result.close();
                 stmt.close();
                 conn.close();
                 return true;
             }
-            else
-            {
+            else {
                 stmt.close();
                 conn.close();
                 return false;
             }
         }
-        catch (Exception e)
-        {
-            return false;
-        }
+        catch (Exception e) { return false; }
     }
 
     /*This method Allows the creation of a new user*/
     public boolean CreateUser(String[] info)
     {
-        try
-        {
+        try {
             conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
             Statement stmt = conn.createStatement();
             String query = "INSERT INTO user VALUES('"+info[0]+"','"+info[1]+"','"+info[2]+"','"+info[3]+"','" +
@@ -80,21 +72,17 @@ public class DatabaseManager
             conn.close();
             return true;
         }
-        catch (Exception e)
-        {
-            return false;
-        }
+        catch (Exception e) { return false; }
     }
     /*This method process the purchase transaction*/
     public boolean Pay(double montant, String info,String product)
     {
-        try
-        {
+        try {
             conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
             PreparedStatement stmt = null;
             String montant_str = Double.toString(montant);
             String query = "UPDATE user SET solde = 'solde-"+montant_str+"' WHERE id='"+info+"';";
-            String query2 ="UUDATE product SET quantity = quantity - 1 WHERE name='?' ;";
+            String query2 ="UUDATE product SET quantity = quantity-1 WHERE name='?' ;";
 
             conn.setAutoCommit(false);
 
@@ -114,17 +102,13 @@ public class DatabaseManager
             conn.close();
             return true;
         }
-        catch (Exception e)
-        {
-            return false;
-        }
+        catch (Exception e) { return false; }
     }
 
     /*this method process the refill transaction*/
     public boolean Recharge(double montant, String info)
     {
-        try
-        {
+        try {
             conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
             Statement stmt = conn.createStatement();
             String montant_str = Double.toString(montant);
@@ -135,27 +119,21 @@ public class DatabaseManager
             conn.close();
             return true;
         }
-        catch (Exception e)
-        {
-            return false;
-        }
+        catch (Exception e) { return false; }
     }
 
     /*This method retrieve the user information*/
     public String[] getInfo(String id)
     {
         String[] data= new String[7];
-        try
-        {
+        try {
             conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
             Statement stmt = conn.createStatement();
             String query = "SELECT * FROM user WHERE id='"+id+"';";
             ResultSet result = stmt.executeQuery(query);
 
-            if(result != null)
-            {
-                while(result.next())
-                {
+            if(result != null) {
+                while(result.next()) {
                     data[0]=result.getString("nom");
                     data[1]=result.getString("adresse");
                     data[2]=result.getString("age");
@@ -165,15 +143,12 @@ public class DatabaseManager
                     data[6]=result.getString("solde");
                 }
 
-
-
                 result.close();
                 stmt.close();
                 conn.close();
                 return data;
             }
-            else
-            {
+            else {
                 stmt.close();
                 conn.close();
                 return null;
@@ -188,18 +163,16 @@ public class DatabaseManager
     public ArrayList<Product> getProduct()
     {
         ArrayList<Product> product = new ArrayList<>();
-        try
-        {
+        try {
             conn = DriverManager.getConnection(conn_string[0],conn_string[1],conn_string[2]);
             Statement stmt = conn.createStatement();
             String query = "SELECT nom,description,prix FROM product;";
             ResultSet result = stmt.executeQuery(query);
 
-            if(result != null)
-            {
-                while(result.next())
-                {
-                    Product in_product = new Product(result.getString("nom"),result.getString("description"),Double.parseDouble(result.getString("prix")));
+            if(result != null) {
+                while(result.next()) {
+                    Product in_product = new Product(result.getString("nom"),result.getString("description"),
+                            Double.parseDouble(result.getString("prix")));
                     product.add(in_product);
                 }
                 result.close();
@@ -207,17 +180,13 @@ public class DatabaseManager
                 conn.close();
                 return product;
             }
-            else
-            {
+            else {
                 stmt.close();
                 conn.close();
                 return null;
             }
         }
-        catch (Exception e)
-        {
-            return null;
-        }
+        catch (Exception e) { return null;}
     }
 }
 

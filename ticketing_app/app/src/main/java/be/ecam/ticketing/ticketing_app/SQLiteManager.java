@@ -16,7 +16,7 @@ public class SQLiteManager extends SQLiteOpenHelper
     private static final String DATABASE_NAME ="app.db";
     private static final int DATABASE_VERSION = 1;
     private SQLiteDatabase db_local;
-    private  String idUser;
+    private String idUser;
     private String type;
 
     public  SQLiteManager(Context context)
@@ -57,7 +57,7 @@ public class SQLiteManager extends SQLiteOpenHelper
         SQLiteDatabase db_local= this.getWritableDatabase();
         double balance = ((BasicUser) user_in).getBalance();
         //this.idUser = user_in.getID();
-        String query ="INSERT INTO app_info(name,id,name2) VALUES('"+user_in.getForeName()+"','"+user_in.getID()+"'," +
+        String query ="INSERT INTO app_info(name,id,name2) VALUES('"+user_in.getName()+"','"+user_in.getID()+"'," +
                     ""+String.valueOf(balance)+");";
         //String query ="INSERT INTO app_info(name,id,name2) VALUES('test','test_id',110.56)";
         try

@@ -24,12 +24,17 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private Button produit;
     private Button refill;
 
+    private SessionManager session;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
+        session = new SessionManager(getApplicationContext());
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
+        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDark : R.style.AppThemeLight);
+
+        //session.checkLogin();
 
         setContentView(R.layout.user_activity);
         String[] infoDB={"ticketing_app","root",""};
@@ -102,7 +107,11 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
+
+    /*protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(LocaleHelper.wrap(newBase,
+                PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en")));
+    }*/
 }

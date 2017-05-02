@@ -1,5 +1,6 @@
 package be.ecam.ticketing.ticketing_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ public class RefillActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
+        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDark : R.style.AppThemeLight);
 
         setContentView(R.layout.refill_activity);
         confirm= (Button) findViewById(R.id.confirm_refill);
@@ -72,4 +73,9 @@ public class RefillActivity extends AppCompatActivity implements View.OnClickLis
 
         }
     }
+
+    /*protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(LocaleHelper.wrap(newBase,
+                PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en")));
+    }*/
 }

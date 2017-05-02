@@ -1,15 +1,12 @@
 package be.ecam.ticketing.ticketing_app;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBar;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
-import android.view.MenuItem;
+import android.text.TextUtils;
 
 /**
  * Created by Paluche on 27-04-17.
@@ -19,13 +16,14 @@ import android.view.MenuItem;
 public class SettingsActivity extends AppCompatActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private String lang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDayNight : R.style.AppThemeLight);
-
+        setTheme(sharedPreferences.getBoolean("background", false) ? R.style.AppThemeDark : R.style.AppThemeLight);
 
         super.onCreate(savedInstanceState);
 
@@ -46,14 +44,15 @@ public class SettingsActivity extends AppCompatActivity
             recreate();
         }
 
-        /*if(key.equals("language")) {
-            attachBaseContext(this);
-        }*/
+        if(key.equals("language")) {
+            lang = sharedPreferences.getString("language", "en");
+        }
     }
 
-    protected void attachBaseContext(Context newBase){
-        //String value = PreferenceManager.getDefaultSharedPreferences(this).getString("language", "en");
-        super.attachBaseContext(MyContextWrapper.wrap(newBase, "en"));
-    }
+    /*protected void attachBaseContext(Context newBase){
+        if (!TextUtils.isEmpty(lang)){
+            super.attachBaseContext(LocaleHelper.wrap(newBase,lang));
+        }
+    }*/
 }
 

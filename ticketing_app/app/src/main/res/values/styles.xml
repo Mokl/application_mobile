@@ -10,7 +10,7 @@
         </item>
     </style>
 
-    <style name="AppThemeDayNight" parent="Theme.AppCompat">
+    <style name="AppThemeDark" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

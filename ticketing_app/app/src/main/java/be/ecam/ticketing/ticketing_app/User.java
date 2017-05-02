@@ -20,7 +20,7 @@ public class User {
         this.access = access;
     }
 
-    public String getForeName(){
+    public String getName(){
         return nom;
     }
 

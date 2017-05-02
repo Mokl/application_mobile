@@ -13,9 +13,9 @@ import java.util.Locale;
  * Code from http://stackoverflow.com/questions/40221711/android-context-getresources-updateconfiguration-deprecated/40704077#40704077
  */
 
-public class MyContextWrapper extends ContextWrapper {
+public class LocaleHelper extends ContextWrapper {
 
-    public MyContextWrapper(Context base) {
+    public LocaleHelper(Context base) {
         super(base);
     }
 
@@ -23,11 +23,7 @@ public class MyContextWrapper extends ContextWrapper {
     public static ContextWrapper wrap(Context context, String language) {
         Configuration config = context.getResources().getConfiguration();
         Locale sysLocale = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            sysLocale = getSystemLocale(config);
-        } else {
-            sysLocale = getSystemLocaleLegacy(config);
-        }
+
         if (!language.equals("") && !sysLocale.getLanguage().equals(language)) {
             Locale locale = new Locale(language);
             Locale.setDefault(locale);
@@ -37,12 +33,13 @@ public class MyContextWrapper extends ContextWrapper {
                 setSystemLocaleLegacy(config, locale);
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                config.setLayoutDirection(locale);
                 context = context.createConfigurationContext(config);
             } else {
                 context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
             }
         }
-        return new MyContextWrapper(context);
+        return new LocaleHelper(context);
     }
 
     @SuppressWarnings("deprecation")
