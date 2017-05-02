@@ -20,8 +20,9 @@ import java.util.Locale;
 
 import static android.R.attr.name;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,
-        SharedPreferences.OnSharedPreferenceChangeListener{
+public  class MainActivity extends AppCompatActivity //implements View.OnClickListener,
+        //SharedPreferences.OnSharedPreferenceChangeListener
+        {
 
     private Button btnClk;
     private Button btnCreate;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.connexion_activity);
-        btnClk = (Button)findViewById(R.id.buttonConnection);
+        setContentView(R.layout.createuser_activity);
+        /*btnClk = (Button)findViewById(R.id.buttonConnection);
         btnCreate=(Button)findViewById(R.id.create_user);
         btnClk.setOnClickListener(this);
         btnCreate.setOnClickListener(this);
@@ -155,11 +156,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this,"No DataBase",Toast.LENGTH_LONG).show();
             }*/
 
-        }
+        /*}
         else if(v==btnCreate)
         {
             Intent intent = new Intent(this,AddUserActivity.class);
             startActivity(intent);
-        }
+        }*/
     }
 }
